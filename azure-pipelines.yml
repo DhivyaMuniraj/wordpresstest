@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: FtpUpload@2
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftps://waws-prod-ch1-043.ftp.azurewebsites.windows.net/site/wwwroot'
+    username: 'wordpresstest\$wordpresstest'
+    password: 'yS6aKJjsQRZT4TkcRRlapAxWff3e2pduE6niufQ1wD5sWBGlab6mL8owjkfT'
+    rootDirectory: 'wp-content/themes'
+    filePatterns: '**'
+    remoteDirectory: '/site/wwwroot/wp-content/themes'
+    clean: false
+    cleanContents: false
+    preservePaths: false
+    trustSSL: false
