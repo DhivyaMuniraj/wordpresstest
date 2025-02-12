@@ -1,1 +1,10 @@
-
+/*
+Theme Name: Custom Theme
+Author: Your Name
+Description: A simple custom WordPress theme
+Version: 1.0
+*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
