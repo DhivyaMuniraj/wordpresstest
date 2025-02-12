@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - script: mkdir -p /home/site/wwwroot/wp-content/themes/customtheme
+  - script: sudo mkdir -p /home/site/wwwroot/wp-content/themes/customtheme
     displayName: 'Create Theme Directory'
 
   - task: FtpUpload@2
