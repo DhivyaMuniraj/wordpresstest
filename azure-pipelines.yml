@@ -12,7 +12,7 @@ pool:
 steps:
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'bd42f546-3318-4407-9700-380997ca0dee'
+    azureSubscription: 'Free Trial (bd42f546-3318-4407-9700-380997ca0dee)'
     appName: 'wordpresstest'
     appType: 'webApp'
     package: 'wp-content/themes/custom-theme'
