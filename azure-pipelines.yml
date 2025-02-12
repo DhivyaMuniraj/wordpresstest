@@ -16,7 +16,7 @@ steps:
     serverUrl: 'ftps://waws-prod-ch1-043.ftp.azurewebsites.windows.net/site/wwwroot'
     username: 'wordpresstest\$wordpresstest'
     password: 'yS6aKJjsQRZT4TkcRRlapAxWff3e2pduE6niufQ1wD5sWBGlab6mL8owjkfT'
-    rootDirectory: 'wp-content\themes'
+    rootDirectory: 'wp-content/themes'
     filePatterns: '**'
     remoteDirectory: '/site/wwwroot/wp-content/themes'
     clean: false
