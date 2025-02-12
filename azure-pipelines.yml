@@ -1,0 +1,18 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'bd42f546-3318-4407-9700-380997ca0dee'
+    appName: 'wordpresstest'
+    appType: 'webApp'
+    package: 'wp-content/themes/custom-theme'
