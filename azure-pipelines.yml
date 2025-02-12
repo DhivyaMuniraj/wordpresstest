@@ -18,7 +18,7 @@ steps:
     password: 'yS6aKJjsQRZT4TkcRRlapAxWff3e2pduE6niufQ1wD5sWBGlab6mL8owjkfT'
     rootDirectory: 'wp-content\themes'
     filePatterns: '**'
-    remoteDirectory: 'D:\home\site\wwwroot\wp-content\themes'
+    remoteDirectory: '/site/wwwroot/wp-content/themes'
     clean: false
     cleanContents: false
     preservePaths: false
