@@ -1,23 +1,12 @@
 <?php
-/**
- * Template Name: Home Page
- */
+/*
+Template Name: Home Page
+*/
+get_header();
+?>
 
-get_header(); ?>
-
-<div class="home-container">
-    <h1>Welcome to Our Website</h1>
-    <p>This is our custom Home page built using the theme.</p>
-
-    <div class="about-section">
-        <h2>About Us</h2>
-        <p>We provide amazing services to our customers.</p>
-    </div>
-
-    <div class="contact-section">
-        <h2>Contact Us</h2>
-        <p>Email: info@example.com | Phone: +123456789</p>
-    </div>
-</div>
+<h1>Welcome to Home Page</h1>
+<p>Please click <a href="<?php echo site_url('/about-us'); ?>">About Us</a> to visit About Us page.</p>
 
 <?php get_footer(); ?>
+
