@@ -13,7 +13,8 @@ steps:
       scriptLocation: "inlineScript"
       inlineScript: |
         # Connect to Azure App Service via SSH
-        az webapp ssh --resource-group wordpresstest --name wordpresstest --command << 'EOF'
+        az webapp create-remote-connection --subscription bd42f546-3318-4407-9700-380997ca0dee --resource-group wordpresstest -n wordpresstest & << 'EOF'
+        # az webapp ssh --resource-group wordpresstest --name wordpresstest --command << 'EOF'
         
         # Ensure the custom theme folder exists
         mkdir -p /home/site/wwwroot/wp-content/themes/customtheme
@@ -30,8 +31,7 @@ steps:
       scriptLocation: "inlineScript"
       inlineScript: |
         # Connect to Azure App Service and run WP-CLI commands
-        az webapp ssh --resource-group wordpresstest --name wordpresstest --command << 'EOF'
-
+        az webapp create-remote-connection --subscription bd42f546-3318-4407-9700-380997ca0dee --resource-group wordpresstest -n wordpresstest & << 'EOF'
         # Create "Contact" page
         wp post create --post_type=page --post_title="Contact" --post_status=publish --allow-root
 
