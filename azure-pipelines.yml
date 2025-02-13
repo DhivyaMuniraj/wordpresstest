@@ -5,58 +5,20 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task: AzureCLI@2
-    displayName: "Deploy Theme Files to Azure"
+  - script: sudo mkdir -p /home/site/wwwroot/wp-content/themes/customtheme
+    displayName: 'Create Theme Directory'
+
+  - task: FtpUpload@2
     inputs:
-      azureSubscription: "Free Trial (bd42f546-3318-4407-9700-380997ca0dee)"
-      scriptType: "bash"
-      scriptLocation: "inlineScript"
-      inlineScript: |
-        # Connect to Azure App Service via SSH
-        az webapp create-remote-connection --subscription bd42f546-3318-4407-9700-380997ca0dee --resource-group wordpresstest -n wordpresstest & << 'EOF'
-        # az webapp ssh --resource-group wordpresstest --name wordpresstest --command << 'EOF'
-        
-        # Ensure the custom theme folder exists
-        mkdir -p /home/site/wwwroot/wp-content/themes/customtheme
-        EOF
-
-        # Upload theme files (including contact.php)
-        scp -r wp-content/themes/customtheme/* root@wordpresstest-e4b4dyh6cdgrdpcr.scm.northcentralus-01.azurewebsites.net:/home/site/wwwroot/wp-content/themes/customtheme/
-
-  - task: AzureCLI@2
-    displayName: "Create Contact Page via WP-CLI"
-    inputs:
-      azureSubscription: "Free Trial (bd42f546-3318-4407-9700-380997ca0dee)"
-      scriptType: "bash"
-      scriptLocation: "inlineScript"
-      inlineScript: |
-        # Connect to Azure App Service and run WP-CLI commands
-        az webapp create-remote-connection --subscription bd42f546-3318-4407-9700-380997ca0dee --resource-group wordpresstest -n wordpresstest & << 'EOF'
-        # Create "Contact" page
-        wp post create --post_type=page --post_title="Contact" --post_status=publish --allow-root
-
-        # Set "Contact" page as the default landing page
-        wp option update show_on_front 'page' --allow-root
-        wp option update page_on_front $(wp post list --post_type=page --post_title="Contact" --field=ID) --allow-root
-
-        EOF
-
-
-# steps:
-#   - script: sudo mkdir -p /home/site/wwwroot/wp-content/themes/customtheme
-#     displayName: 'Create Theme Directory'
-
-#   - task: FtpUpload@2
-#     inputs:
-#       credentialsOption: 'inputs'
-#       serverUrl: 'ftps://waws-prod-ch1-043.ftp.azurewebsites.windows.net/site/wwwroot'
-#       username: 'wordpresstest\$wordpresstest'
-#       password: 'yS6aKJjsQRZT4TkcRRlapAxWff3e2pduE6niufQ1wD5sWBGlab6mL8owjkfT'
-#       rootDirectory: 'wp-content/themes/customtheme'
-#       filePatterns: '**'
-#       remoteDirectory: '/site/wwwroot/wp-content/themes/customtheme'
-#       clean: false
-#       cleanContents: false
-#       preservePaths: false
-#       trustSSL: false
-#     displayName: 'Upload Theme via FTP'
+      credentialsOption: 'inputs'
+      serverUrl: 'ftps://waws-prod-ch1-043.ftp.azurewebsites.windows.net/site/wwwroot'
+      username: 'wordpresstest\$wordpresstest'
+      password: 'yS6aKJjsQRZT4TkcRRlapAxWff3e2pduE6niufQ1wD5sWBGlab6mL8owjkfT'
+      rootDirectory: 'wp-content/themes/customtheme'
+      filePatterns: '**'
+      remoteDirectory: '/site/wwwroot/wp-content/themes/customtheme'
+      clean: false
+      cleanContents: false
+      preservePaths: false
+      trustSSL: false
+    displayName: 'Upload Theme via FTP'
